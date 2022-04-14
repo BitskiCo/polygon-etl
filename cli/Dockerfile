@@ -1,8 +1,8 @@
 FROM python:3.6
 MAINTAINER Evgeny Medvedev <evge.medvedev@gmail.com>
-ENV PROJECT_DIR=polygon-etl
+ENV PROJECT_DIR=cli/polygon-etl
 
-RUN mkdir /$PROJECT_DIR
+RUN mkdir -p /$PROJECT_DIR
 WORKDIR /$PROJECT_DIR
 COPY . .
 RUN pip install --upgrade pip && pip install -e /$PROJECT_DIR/[streaming]

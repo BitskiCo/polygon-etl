@@ -13,3 +13,4 @@ jobs:
     uses: BitskiCo/bitski-internal-sdk/.github/workflows/docker.yaml@v1
     with:
       push: ${{ github.event_name != 'pull_request' }}
+      file: ./cli/Dockerfile

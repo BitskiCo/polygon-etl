@@ -35,14 +35,15 @@ DEFAULT_KAFKA_TOPIC_MAPPING = {
 }
 
 TESTNET_KAFKA_TOPIC_MAPPING = {
-    'block': 'testnet_polygon_blocks',
-    'transaction': 'testnet_polygon_transactions',
-    'log': 'testnet_polygon_logs',
-    'token_transfer': 'testnet_polygon_token_transfers',
+    'block': 'polygon_mumbai_blocks',
+    'transaction': 'polygon_mumbai_transactions',
+    'log': 'polygon_mumbai_logs',
+    'token_transfer': 'polygon_mumbai_token_transfers',
+    # todo(shashank): migrate token_transfers_v2 to new topic
     'token_transfer_v2': 'testnet_polygon_token_transfers_v2',
-    'trace': 'testnet_polygon_traces',
-    'contract': 'testnet_polygon_contracts',
-    'token': 'testnet_polygon_tokens',
+    'trace': 'polygon_mumbai_traces',
+    'contract': 'polygon_mumbai_contracts',
+    'token': 'polygon_mumbai_tokens',
 }
 
 def create_item_exporters(outputs, testnet=False):

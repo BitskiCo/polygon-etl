@@ -120,7 +120,7 @@ def get_bucket_and_path_from_gcs_output(output):
 def determine_item_exporter_type(output):
     if output is not None and output.startswith('projects'):
         return ItemExporterType.PUBSUB
-    elif output is not None and output.startswith('postgresql'):
+    elif output is not None and output.startswith('postgresql') or output.startswith('cockroachdb'):
         return ItemExporterType.POSTGRES
     elif output is not None and output.startswith('gs://'):
         return ItemExporterType.GCS

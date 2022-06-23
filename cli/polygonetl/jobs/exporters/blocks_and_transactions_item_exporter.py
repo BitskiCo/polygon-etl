@@ -41,7 +41,8 @@ BLOCK_FIELDS_TO_EXPORT = [
     'gas_limit',
     'gas_used',
     'timestamp',
-    'transaction_count'
+    'transaction_count',
+    'chain_id'
 ]
 
 TRANSACTION_FIELDS_TO_EXPORT = [
@@ -56,7 +57,8 @@ TRANSACTION_FIELDS_TO_EXPORT = [
     'gas',
     'gas_price',
     'input',
-    'block_timestamp'
+    'block_timestamp',
+    'chain_id'
 ]
 
 

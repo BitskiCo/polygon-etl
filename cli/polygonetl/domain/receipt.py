@@ -33,3 +33,4 @@ class EthReceipt(object):
         self.logs = []
         self.root = None
         self.status = None
+        self.chain_id = 1

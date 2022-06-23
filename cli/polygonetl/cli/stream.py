@@ -24,6 +24,7 @@ import random
 
 import click
 from blockchainetl_common.streaming.streaming_utils import configure_signals, configure_logging
+from blockchainetl.web3_utils import build_web3
 from polygonetl.enumeration.entity_type import EntityType
 
 from polygonetl.providers.auto import get_provider_from_uri
@@ -39,7 +40,7 @@ from polygonetl.thread_local_proxy import ThreadLocalProxy
                    'file://$HOME/Library/Bor/geth.ipc or https://mainnet.infura.io')
 @click.option('-o', '--output', type=str,
               help='Either Google PubSub topic path e.g. projects/your-project/topics/crypto_ethereum; '
-                   'or Postgres connection url e.g. postgresql+pg8000://postgres:admin@127.0.0.1:5432/ethereum. '
+                   'or Postgres connection url e.g. postgresql://postgres:admin@127.0.0.1:5432/ethereum. '
                    'If not specified will print to console')
 @click.option('-s', '--start-block', default=None, show_default=True, type=int, help='Start block')
 @click.option('-e', '--entity-types', default=','.join(EntityType.ALL_FOR_INFURA), show_default=True, type=str,
@@ -65,7 +66,10 @@ def stream(last_synced_block_file, lag, provider_uri, output, start_block, entit
 
     # TODO: Implement fallback mechanism for provider uris instead of picking randomly
     provider_uri = pick_random_provider_uri(provider_uri)
-    logging.info('Using ' + provider_uri)
+    logging.info('Using provider: ' + provider_uri)
+
+    chain_id = get_chain_id(provider_uri)
+    logging.info('Using chain_id: ' + str(chain_id))
 
     streamer_adapter = EthStreamerAdapter(
         batch_web3_provider=ThreadLocalProxy(lambda: get_provider_from_uri(provider_uri, batch=True)),
@@ -110,3 +114,8 @@ def validate_entity_types(entity_types, output):
 def pick_random_provider_uri(provider_uri):
     provider_uris = [uri.strip() for uri in provider_uri.split(',')]
     return random.choice(provider_uris)
+
+def get_chain_id(provider_uri):
+    provider = get_provider_from_uri(provider_uri)
+    web3 = build_web3(provider)
+    return int(web3.eth.chain_id)

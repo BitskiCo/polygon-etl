@@ -50,8 +50,9 @@ setup(
             'google-cloud-pubsub==2.1.0',
             'kafka-python==2.0.2',
             'google-cloud-storage==1.33.0',
-            'sqlalchemy==1.3.13',
-            'pg8000==1.13.2',
+            'sqlalchemy==1.4',
+            'psycopg2==2.9.3',
+            'sqlalchemy-cockroachdb==1.4.3',
         ],
         'dev': [
             'pytest~=4.3.0'

@@ -46,6 +46,7 @@ BLOCKS = Table(
     Column('gas_limit', BigInteger),
     Column('gas_used', BigInteger),
     Column('transaction_count', BigInteger),
+    Column('chain_id', BigInteger, primary_key=True),
 )
 
 TRANSACTIONS = Table(
@@ -67,6 +68,7 @@ TRANSACTIONS = Table(
     Column('block_timestamp', TIMESTAMP),
     Column('block_number', BigInteger),
     Column('block_hash', String),
+    Column('chain_id', BigInteger, primary_key=True),
 )
 
 LOGS = Table(
@@ -83,6 +85,7 @@ LOGS = Table(
     Column('block_timestamp', TIMESTAMP),
     Column('block_number', BigInteger),
     Column('block_hash', String),
+    Column('chain_id', BigInteger, primary_key=True),
 )
 
 TOKEN_TRANSFERS = Table(
@@ -96,6 +99,22 @@ TOKEN_TRANSFERS = Table(
     Column('block_timestamp', TIMESTAMP),
     Column('block_number', BigInteger),
     Column('block_hash', String),
+)
+
+TOKEN_TRANSFERS_V2 = Table(
+    'token_transfers_v2', metadata,
+    Column('contract_address', String),
+    Column('from_address', String),
+    Column('to_address', String),
+    Column('token_type', String),
+    Column('token_id', String, primary_key=True),
+    Column('amount', Numeric(78)),
+    Column('transaction_hash', String, primary_key=True),
+    Column('log_index', BigInteger, primary_key=True),
+    Column('block_timestamp', TIMESTAMP),
+    Column('block_number', BigInteger),
+    Column('block_hash', String),
+    Column('chain_id', BigInteger, primary_key=True),
 )
 
 TRACES = Table(
@@ -120,6 +139,7 @@ TRACES = Table(
     Column('block_number', BigInteger),
     Column('block_hash', String),
     Column('trace_id', String, primary_key=True),
+    Column('chain_id', BigInteger, primary_key=True),
 )
 
 

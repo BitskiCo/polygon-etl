@@ -30,6 +30,7 @@ FIELDS_TO_EXPORT = [
     'is_erc20',
     'is_erc721',
     'block_number',
+    'chain_id'
 ]
 
 

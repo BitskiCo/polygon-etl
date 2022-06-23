@@ -26,6 +26,7 @@ from blockchainetl_common.jobs.exporters.composite_item_exporter import Composit
 FIELDS_TO_EXPORT = [
     'block_number',
     'transaction_traces',
+    'chain_id'
 ]
 
 

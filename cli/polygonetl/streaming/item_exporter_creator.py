@@ -78,7 +78,7 @@ def create_item_exporter(output, testnet, chain_id):
         from blockchainetl.jobs.exporters.converters.int_to_decimal_item_converter import IntToDecimalItemConverter
         from blockchainetl.jobs.exporters.converters.list_field_item_converter import ListFieldItemConverter
         from blockchainetl.jobs.exporters.converters.chain_id_converter import ChainIdConverter
-        from polygonetl.streaming.postgres_tables import BLOCKS, TRANSACTIONS, LOGS, TOKEN_TRANSFERS, TRACES
+        from polygonetl.streaming.postgres_tables import BLOCKS, TRANSACTIONS, LOGS, TOKEN_TRANSFERS, TOKEN_TRANSFERS_V2, TRACES
 
         item_exporter = PostgresItemExporter(
             output, item_type_to_insert_stmt_mapping={
@@ -86,6 +86,7 @@ def create_item_exporter(output, testnet, chain_id):
                 'transaction': create_insert_statement_for_table(TRANSACTIONS),
                 'log': create_insert_statement_for_table(LOGS),
                 'token_transfer': create_insert_statement_for_table(TOKEN_TRANSFERS),
+                'token_transfer_v2': create_insert_statement_for_table(TOKEN_TRANSFERS_V2),
                 'traces': create_insert_statement_for_table(TRACES),
             },
             converters=[UnixTimestampItemConverter(), IntToDecimalItemConverter(),

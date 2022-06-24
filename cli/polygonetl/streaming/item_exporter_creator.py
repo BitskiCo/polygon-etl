@@ -21,7 +21,7 @@
 #  SOFTWARE.
 
 from blockchainetl.jobs.exporters.console_item_exporter import ConsoleItemExporter
-from blockchainetl_common.jobs.exporters.multi_item_exporter import MultiItemExporter
+from blockchainetl.jobs.exporters.multi_item_exporter import MultiItemExporter
 
 DEFAULT_KAFKA_TOPIC_MAPPING = {
     'block': 'polygon_blocks',
@@ -72,11 +72,11 @@ def create_item_exporter(output, testnet, chain_id):
         batch_max_messages=1000,
         enable_message_ordering=enable_message_ordering)
     elif item_exporter_type == ItemExporterType.POSTGRES:
-        from blockchainetl_common.jobs.exporters.postgres_item_exporter import PostgresItemExporter
-        from blockchainetl_common.streaming.postgres_utils import create_insert_statement_for_table
-        from blockchainetl_common.jobs.exporters.converters.unix_timestamp_item_converter import UnixTimestampItemConverter
-        from blockchainetl_common.jobs.exporters.converters.int_to_decimal_item_converter import IntToDecimalItemConverter
-        from blockchainetl_common.jobs.exporters.converters.list_field_item_converter import ListFieldItemConverter
+        from blockchainetl.jobs.exporters.postgres_item_exporter import PostgresItemExporter
+        from blockchainetl.streaming.postgres_utils import create_insert_statement_for_table
+        from blockchainetl.jobs.exporters.converters.unix_timestamp_item_converter import UnixTimestampItemConverter
+        from blockchainetl.jobs.exporters.converters.int_to_decimal_item_converter import IntToDecimalItemConverter
+        from blockchainetl.jobs.exporters.converters.list_field_item_converter import ListFieldItemConverter
         from blockchainetl.jobs.exporters.converters.chain_id_converter import ChainIdConverter
         from polygonetl.streaming.postgres_tables import BLOCKS, TRANSACTIONS, LOGS, TOKEN_TRANSFERS, TRACES
 

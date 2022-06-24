@@ -20,7 +20,7 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
-from blockchainetl_common.jobs.exporters.console_item_exporter import ConsoleItemExporter
+from blockchainetl.jobs.exporters.console_item_exporter import ConsoleItemExporter
 from blockchainetl_common.jobs.exporters.multi_item_exporter import MultiItemExporter
 
 DEFAULT_KAFKA_TOPIC_MAPPING = {
@@ -120,7 +120,7 @@ def get_bucket_and_path_from_gcs_output(output):
 def determine_item_exporter_type(output):
     if output is not None and output.startswith('projects'):
         return ItemExporterType.PUBSUB
-    elif output is not None and output.startswith('postgresql') or output.startswith('cockroachdb'):
+    elif output is not None and (output.startswith('postgresql') or output.startswith('cockroachdb')):
         return ItemExporterType.POSTGRES
     elif output is not None and output.startswith('gs://'):
         return ItemExporterType.GCS

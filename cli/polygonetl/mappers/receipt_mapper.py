@@ -66,5 +66,7 @@ class EthReceiptMapper(object):
             'gas_used': receipt.gas_used,
             'contract_address': receipt.contract_address,
             'root': receipt.root,
-            'status': receipt.status
+            'status': receipt.status,
+            'effective_gas_price': receipt.effective_gas_price,
+            'logs': [self.receipt_log_mapper.receipt_log_to_dict(log) for log in receipt.logs],
         }
